@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap-italia/dist/css/bootstrap-italia.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.slim.js",
+              "node_modules/bootstrap-italia/dist/js/bootstrap-italia.min.js"
+            ]
           },
           "configurations": {
             "production": {

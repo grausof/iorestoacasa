@@ -3,16 +3,40 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MapsComponent } from './maps/maps.component';
+import { HttpClientModule } from '@angular/common/http';
+
+const appRoutes: Routes = [
+  {
+    path: 'maps',
+    component: MapsComponent,
+    data: { title: 'Maps' }
+  },
+  { path: '',
+    redirectTo: '/maps',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
