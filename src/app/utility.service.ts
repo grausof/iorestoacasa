@@ -18,6 +18,29 @@ export class UtilityService {
     return data_string;
   }
 
+  static calculateSum(datiPerRegione, detailValue){
+
+    detailValue.totale_casi=0;
+    detailValue.tamponi=0;
+    detailValue.dimessi_guariti=0;
+    detailValue.terapia_intensiva=0;
+    detailValue.ricoverati_con_sintomi=0;
+    detailValue.isolamento_domiciliare=0;
+
+    for (let regione in datiPerRegione) {
+        let element = datiPerRegione[regione];
+        detailValue.denominazione_regione = 'Italia'
+        detailValue.totale_casi+=element.totale_casi
+        detailValue.tamponi+=element.tamponi
+        detailValue.dimessi_guariti+=element.dimessi_guariti
+        detailValue.terapia_intensiva+=element.terapia_intensiva
+        detailValue.ricoverati_con_sintomi+=element.ricoverati_con_sintomi
+        detailValue.isolamento_domiciliare+=element.dimessi_guariti
+        detailValue.deceduti+=element.deceduti
+    }
+    return detailValue;
+
+  }
   static mapRegion(region){
     if(region=="IT-21"){
       return "Piemonte"
