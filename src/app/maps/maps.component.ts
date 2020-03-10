@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
+import am4geodata_italyLow from "@amcharts/amcharts4-geodata/italyLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import {UtilityService} from "../utility.service"
 
@@ -32,9 +33,8 @@ export class MapsComponent implements OnInit {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
     
     //chart.titles.create().text = title;
-    chart.geodataSource.url = "https://www.amcharts.com/lib/4/geodata/json/" + currentMap + ".json";
-
     
+    chart.geodata = am4geodata_italyLow
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate()-1);
     let todaydate = UtilityService.dateToString(new Date());
