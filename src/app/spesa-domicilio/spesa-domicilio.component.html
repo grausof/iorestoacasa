@@ -1,0 +1,30 @@
+<div class="container my-1">
+    <div class="row">
+        <h4>Seleziona la regione</h4>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="chartdiv"></div>
+        </div>
+        <div class="col-sm-6">
+            <h3>Pagina in costruzione</h3>
+            <h5 [hidden]="!currentRegion">Regione selezionata: {{currentRegion}}</h5><br/>
+            <div [hidden]="!currentRegion">
+            
+                <label>Seleziona la provincia: </label><br>
+                <select title="Scegli una opzione" #provSelect (change)='onProvChange(provSelect.value)'>
+                    <option *ngFor="let item of capoluoghi; let i = index" [value]="i">
+                        {{item}}
+                    </option>
+                </select>
+                    
+            </div>
+
+            
+        </div>
+        
+    </div>
+</div>
+
+
+

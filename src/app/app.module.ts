@@ -6,23 +6,25 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MapsComponent } from './maps/maps.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SpesaDomicilioComponent } from './spesa-domicilio/spesa-domicilio.component';
 
 const appRoutes: Routes = [
   {
-    path: 'maps',
-    component: MapsComponent,
-    data: { title: 'Maps' }
+    path: 'spesa',
+    component: SpesaDomicilioComponent,
+    data: { title: 'Spesa a domicilio' },
   },
   { path: '',
   component: MapsComponent,
-  data: { title: 'Maps' }
+  data: { title: 'Maps' },
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapsComponent
+    MapsComponent,
+    SpesaDomicilioComponent
   ],
   imports: [
     BrowserModule,

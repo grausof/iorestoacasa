@@ -121,9 +121,7 @@ export class MapsComponent implements OnInit {
   // Create map polygon series
   let polygonSeries = mapChart.series.push(new am4maps.MapPolygonSeries());
 
-  // Exclude Antartica
-  polygonSeries.exclude = ["AQ"];
-
+  polygonSeries.exclude = ["FR-H"];
   // Make map load polygon (like country names) data from GeoJSON
   polygonSeries.useGeodata = true;
 
