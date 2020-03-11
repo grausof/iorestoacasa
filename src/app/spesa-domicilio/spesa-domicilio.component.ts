@@ -8,6 +8,7 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_kelly from "@amcharts/amcharts4/themes/kelly";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import {UtilityService} from "../utility.service"
+import negozi from './negozi.json';
 
 am4core.useTheme(am4themes_kelly);
 am4core.useTheme(am4themes_animated);
@@ -21,8 +22,9 @@ export class SpesaDomicilioComponent implements OnInit {
 
   detailRegioniUrl = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json';
   currentRegion = null;
-  capoluoghi = []
+  province = []
   currentProv;
+  negoziPerProvincia = []
 
 
   elencoRegioni = {"Marche": {"province": ["AN", "AP", "FM", "MC", "PU"], "capoluoghi": ["Ancona", "Ascoli Piceno", "Fermo", "Macerata", "Pesaro e Urbino"], "nome": "Marche"}, "Toscana": {"province": ["AR", "FI", "GR", "LI", "LU", "MS", "PI", "PT", "PO", "SI"], "capoluoghi": ["Arezzo", "Firenze", "Grosseto", "Livorno", "Lucca", "Massa e Carrara", "Pisa", "Pistoia", "Prato", "Siena"], "nome": "Toscana"}, "Calabria": {"province": ["CZ", "CS", "KR", "RC", "VV"], "capoluoghi": ["Catanzaro", "Cosenza", "Crotone", "Reggio Calabria", "Vibo Valentia"], "nome": "Calabria"}, "Friuli-Venezia Giulia": {"province": ["GO", "PN", "TS", "UD"], "capoluoghi": ["Gorizia", "Pordenone", "Trieste", "Udine"], "nome": "Friuli-Venezia Giulia"}, "Molise": {"province": ["CB", "IS"], "capoluoghi": ["Campobasso", "Isernia"], "nome": "Molise"}, "Lazio": {"province": ["FR", "LT", "RI", "RM", "VT"], "capoluoghi": ["Frosinone", "Latina", "Rieti", "Roma", "Viterbo"], "nome": "Lazio"}, "Liguria": {"province": ["GE", "IM", "SP", "SV"], "capoluoghi": ["Genova", "Imperia", "La Spezia", "Savona"], "nome": "Liguria"}, "Campania": {"province": ["AV", "BN", "CE", "NA", "SA"], "capoluoghi": ["Avellino", "Benevento", "Caserta", "Napoli", "Salerno"], "nome": "Campania"}, "Sardegna": {"province": ["CA", "CI", "VS", "NU", "OG", "OT", "OR", "SS"], "capoluoghi": ["Cagliari", "Carbonia-Iglesias", "Medio Campidano", "Nuoro", "Ogliastra", "Olbia-Tempio", "Oristano", "Sassari"], "nome": "Sardegna"}, "Abruzzo": {"province": ["CH", "AQ", "PE", "TE"], "capoluoghi": ["Chieti", "L'Aquila", "Pescara", "Teramo"], "nome": "Abruzzo"}, "Trentino-Alto Adige": {"province": ["BZ", "TN"], "capoluoghi": ["Bolzano", "Trento"], "nome": "Trentino-Alto Adige"}, "Piemonte": {"province": ["AL", "AT", "BI", "CN", "NO", "TO", "VB", "VC"], "capoluoghi": ["Alessandria", "Asti", "Biella", "Cuneo", "Novara", "Torino", "Verbano Cusio Ossola", "Vercelli"], "nome": "Piemonte"}, "Sicilia": {"province": ["AG", "CL", "CT", "EN", "ME", "PA", "RG", "SR", "TP"], "capoluoghi": ["Agrigento", "Caltanissetta", "Catania", "Enna", "Messina", "Palermo", "Ragusa", "Siracusa", "Trapani"], "nome": "Sicilia"}, "Emilia-Romagna": {"province": ["BO", "FE", "FC", "MO", "PR", "PC", "RA", "RE", "RN"], "capoluoghi": ["Bologna", "Ferrara", "Forl\u00ec-Cesena", "Modena", "Parma", "Piacenza", "Ravenna", "Reggio Emilia", "Rimini"], "nome": "Emilia-Romagna"}, "Veneto": {"province": ["BL", "PD", "RO", "TV", "VE", "VR", "VI"], "capoluoghi": ["Belluno", "Padova", "Rovigo", "Treviso", "Venezia", "Verona", "Vicenza"], "nome": "Veneto"}, "Basilicata": {"province": ["MT", "PZ"], "capoluoghi": ["Matera", "Potenza"], "nome": "Basilicata"}, "Puglia": {"province": ["BA", "BT", "BR", "LE", "FG", "TA"], "capoluoghi": ["Bari", "Barletta-Andria-Trani", "Brindisi", "Lecce", "Foggia", "Taranto"], "nome": "Puglia"}, "Lombardia": {"province": ["BG", "BS", "CO", "CR", "LC", "LO", "MN", "MI", "MB", "PV", "SO", "VA"], "capoluoghi": ["Bergamo", "Brescia", "Como", "Cremona", "Lecco", "Lodi", "Mantova", "Milano", "Monza e Brianza", "Pavia", "Sondrio", "Varese"], "nome": "Lombardia"}, "Umbria": {"province": ["PG", "TR"], "capoluoghi": ["Perugia", "Terni"], "nome": "Umbria"}, "Valle d'Aosta": {"province": ["AO"], "capoluoghi": ["Aosta"], "nome": "Valle d'Aosta"}}
@@ -72,9 +74,15 @@ export class SpesaDomicilioComponent implements OnInit {
       
 
       this.currentRegion = selectedRegion;
-      this.capoluoghi = this.elencoRegioni[this.currentRegion].capoluoghi
-      this.currentProv = this.capoluoghi[0]
+      this.province = this.elencoRegioni[this.currentRegion].province
+      this.currentProv = this.province[0]
 
+      if(this.currentProv in negozi){
+        this.negoziPerProvincia = negozi[this.currentProv];
+      } else {
+        this.negoziPerProvincia=[]
+      }
+      
       ev.target.series.chart.zoomToMapObject(ev.target);
       
 
@@ -89,26 +97,43 @@ export class SpesaDomicilioComponent implements OnInit {
     imageSeries.mapImages.template.propertyFields.url = "url";
 
     let circle = imageSeries.mapImages.template.createChild(am4core.Circle);
-    circle.radius = 1;
+    circle.radius = 2;
     circle.propertyFields.fill = "color";
 
 
     let colorSet = new am4core.ColorSet();
 
-    imageSeries.data = [ {
-      "title": "Abruzzo",
-      "latitude": 42.35122196,
-      "longitude": 13.39843823,
-      "color":colorSet.next()
-    }]
+    imageSeries.data = [ ]
 
+    for (let prov in negozi) {
+      let value = negozi[prov];
+      value.forEach(negozio => {
+        if("latitude" in negozio && "longitude" in negozio){
+          var n = {
+            "title": negozio["city"]+" ("+negozio["province"]+")",
+            "latitude": negozio['latitude'],
+            "longitude": negozio['longitude'],
+            "color":colorSet.next()
+          };
+          imageSeries.data.push(n);
+        }
+      });
+    }
+
+
+    
 
 
   }
 
   onProvChange(value:string){
-    this.currentProv=this.capoluoghi[value];
+    this.currentProv=this.province[value];
     console.log(this.currentProv)
+    if(this.currentProv in negozi){
+      this.negoziPerProvincia = negozi[this.currentProv];
+    } else {
+      this.negoziPerProvincia=[]
+    }
 }
   
 

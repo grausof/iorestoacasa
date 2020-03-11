@@ -7,19 +7,39 @@
             <div id="chartdiv"></div>
         </div>
         <div class="col-sm-6">
-            <h3>Pagina in costruzione</h3>
+  
             <h5 [hidden]="!currentRegion">Regione selezionata: {{currentRegion}}</h5><br/>
             <div [hidden]="!currentRegion">
             
-                <label>Seleziona la provincia: </label><br>
+                <label>Seleziona la provincia: </label>
                 <select title="Scegli una opzione" #provSelect (change)='onProvChange(provSelect.value)'>
-                    <option *ngFor="let item of capoluoghi; let i = index" [value]="i">
+                    <option *ngFor="let item of province; let i = index" [value]="i">
                         {{item}}
                     </option>
                 </select>
                     
             </div>
-
+        
+            <div class="it-list-wrapper">
+                <ul class="it-list">
+                    <li *ngFor="let neg of negoziPerProvincia">
+                    <a class="" *ngIf="!neg.shipment">
+                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
+                        <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
+                        </span>
+                        </div>
+                    </a>
+                    <a class="" *ngIf="neg.shipment" [href]="neg.shipment" target="_blank">
+                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
+                        <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
+                        </span>
+                        </div>
+                    </a>
+                    
+                    </li>
+                    
+                </ul>
+            </div>
             
         </div>
         
