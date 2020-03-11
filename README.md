@@ -4,5 +4,5 @@
 
 ## Live site
 
-Navigate to https://coviditaly.web.app/. 
+Navigate to https://io-restoacasa.firebaseapp.com/. 
 
