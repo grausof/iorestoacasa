@@ -14,8 +14,8 @@ const appRoutes: Routes = [
     data: { title: 'Maps' }
   },
   { path: '',
-    redirectTo: '/maps',
-    pathMatch: 'full'
+  component: MapsComponent,
+  data: { title: 'Maps' }
   }
 ];
 
