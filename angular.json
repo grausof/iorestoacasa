@@ -33,7 +33,7 @@
             ],
             "scripts": [
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/jquery/dist/jquery.slim.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap-italia/dist/js/bootstrap-italia.min.js"
             ]
           },

@@ -19,7 +19,7 @@
                 </select>
                     
             </div>
-        
+            <p *ngIf="negoziPerProvincia.length == 0" [hidden]="!currentRegion">Ancora nessuna attività presente nella tua zona</p>
             <div class="it-list-wrapper">
                 <ul class="it-list">
                     <li *ngFor="let neg of negoziPerProvincia">
