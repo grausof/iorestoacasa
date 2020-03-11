@@ -1,4 +1,4 @@
-# Coviditaly
+# \#iorestoacasa - Civic hacker
 
 Seguendo quanto è stato fatto dalla comunità cinese di Whuan https://community.wuhan2020.org.cn/it-it/ vogliamo realizzare un servizio a disposizione di tutti gli Italiani, che permetta di avere in un unico posto informazioni in tempo reale relative ad ospedali, attività produttive, servizi di approvvigionamento e molto altro. 
 
