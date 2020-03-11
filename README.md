@@ -1,4 +1,6 @@
 # \#iorestoacasa - Civic hacker
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://io-restoacasa.web.app/) 
+
 
 Seguendo quanto è stato fatto dalla comunità cinese di Whuan https://community.wuhan2020.org.cn/it-it/ vogliamo realizzare un servizio a disposizione di tutti gli Italiani, che permetta di avere in un unico posto informazioni in tempo reale relative ad ospedali, attività produttive, servizi di approvvigionamento e molto altro. 
 
@@ -6,8 +8,13 @@ Seguendo quanto è stato fatto dalla comunità cinese di Whuan https://community
 
 Queste le parole che arrivano direttamente dal sito ufficiale della community.
 
+## Come collaborare
+
+Abbiamo aperto un canale su [slack](https://join.slack.com/t/iorestoacasa/shared_invite/zt-cq04uaom-g0x4XaR1Ajw32sKP2reckg) sul quale possiamo scambiarci nuove idee, integrazioni, proposte di miglioramento ecc.
+
 ## Live site
 
 Navigate to https://io-restoacasa.web.app/. 
 
 ## Tutti insieme uniti, ce la faremo !
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/grausof/iorestoacasa)
