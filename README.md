@@ -1,4 +1,4 @@
-# \#iorestoacasa - Civic hacker
+# \#iorestoacasa - Coronavirus ITALIA 2020
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://io-restoacasa.web.app/) 
 
 
