@@ -8,6 +8,6 @@ Queste le parole che arrivano direttamente dal sito ufficiale della community.
 
 ## Live site
 
-Navigate to https://io-restoacasa.firebaseapp.com/. 
+Navigate to https://io-restoacasa.web.app/. 
 
 ## Tutti insieme uniti, ce la faremo !
