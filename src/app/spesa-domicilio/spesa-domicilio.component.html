@@ -9,8 +9,9 @@
         <div class="col-sm-6">
   
             <h5 [hidden]="!currentRegion">Regione selezionata: {{currentRegion}}</h5><br/>
+            <p><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfk5-qID__HdmUPqjsGwLTp93E6VmPJzM0WMoWJKo86T_-gvQ/viewform">Clicca qui </a>per inserire la tua attività</p>
             <div [hidden]="!currentRegion">
-            
+
                 <label>Seleziona la provincia: </label>
                 <select title="Scegli una opzione" #provSelect (change)='onProvChange(provSelect.value)'>
                     <option *ngFor="let item of province; let i = index" [value]="i">
