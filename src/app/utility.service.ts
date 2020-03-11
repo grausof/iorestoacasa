@@ -14,7 +14,7 @@ export class UtilityService {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     
-    let data_string = yyyy+"-"+mm+"-"+dd+" 18:00:00";
+    let data_string = yyyy+"-"+mm+"-"+dd+"";
     return data_string;
   }
 

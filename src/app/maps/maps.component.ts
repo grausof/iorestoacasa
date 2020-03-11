@@ -65,6 +65,7 @@ export class MapsComponent implements OnInit {
     this.http.get(this.detailRegioniUrl).subscribe((data: any) => {
       data.forEach(element => {
         let data = element.data;
+        data = data.split(" ")[0];
         if (!(data in this.dateMaps)){
           this.dateMaps[data] = [];
         } 
