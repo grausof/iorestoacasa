@@ -6,6 +6,7 @@ Seguendo quanto è stato fatto dalla comunità cinese di Whuan https://community
 "Siamo alla ricerca di tutti coloro che desiderano dare un contributo alla campagna contro il coronavirus, in modo che tutte le persone che possiedono le adeguate competenze possano contribuire al lavoro di sviluppo nell’ambito delle tematiche ad esse pertinenti e quindi, in accordo con la cultura della comunità Open Source, al raggiungimento del successo attraverso un approccio di cooperazione autogestita."
 
 Queste le parole che arrivano direttamente dal sito ufficiale della community.
+Visita il sito web https://io-restoacasa.web.app/
 
 ![Screenshot](https://github.com/grausof/iorestoacasa/blob/master/screenshot.png?raw=true)
 
@@ -23,7 +24,7 @@ yarn start
 
 ## Live site
 
-Navigate to https://io-restoacasa.web.app/. 
+https://io-restoacasa.web.app/
 
 ## Tutti insieme uniti, ce la faremo !
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/grausof/iorestoacasa)
