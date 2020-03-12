@@ -26,6 +26,7 @@ export class UtilityService {
     detailValue.terapia_intensiva=0;
     detailValue.ricoverati_con_sintomi=0;
     detailValue.isolamento_domiciliare=0;
+    detailValue.deceduti=0;
 
     for (let regione in datiPerRegione) {
         let element = datiPerRegione[regione];
