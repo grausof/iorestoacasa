@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
@@ -88,7 +88,7 @@ export class MapsComponent implements OnInit {
     yesterday.setDate(yesterday.getDate()-1);
     let todaydate = UtilityService.dateToString(new Date());
     let yesterdaydate = UtilityService.dateToString(yesterday);
-
+    
     this.http.get(url).subscribe((data: any) => {
 
       this.datiPerRegione = {}
