@@ -13,6 +13,14 @@ Queste le parole che arrivano direttamente dal sito ufficiale della community.
 
 Abbiamo aperto un canale su [slack](https://join.slack.com/t/iorestoacasa/shared_invite/zt-cq04uaom-g0x4XaR1Ajw32sKP2reckg) sul quale possiamo scambiarci nuove idee, integrazioni, proposte di miglioramento ecc.
 
+## Come lanciare l'ambiente in locale
+```
+git clone https://github.com/grausof/iorestoacasa.git
+cd iorestoacasa
+yarn install
+yarn start
+```
+
 ## Live site
 
 Navigate to https://io-restoacasa.web.app/. 
