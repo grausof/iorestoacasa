@@ -90,9 +90,9 @@ export class MapsComponent implements OnInit {
     let yesterdaydate = UtilityService.dateToString(yesterday);
 
     this.http.get(url).subscribe((data: any) => {
-      if(this.showRegion){
-        this.datiPerRegione = {}
-      }
+
+      this.datiPerRegione = {}
+      
       data.forEach(element => {
         let data = element.data;
         data = data.split(" ")[0];

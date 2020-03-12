@@ -18,8 +18,9 @@ export class UtilityService {
     return data_string;
   }
 
-  static calculateSum(datiPerRegione, detailValue){
+  static calculateSum(datiPerRegione, actualValue){
 
+    var detailValue = Object.create(actualValue);
     detailValue.totale_casi=0;
     detailValue.tamponi=0;
     detailValue.dimessi_guariti=0;
