@@ -11,21 +11,38 @@
         </div>
         <div class="col-sm-2">
             <h4>Numeri</h4>
-            <p class="lead">
-                {{detailValue.denominazione_regione}}
-                <button type="button" class="close" aria-label="Close" (click)="closeButton()" [hidden]="!showCloseButton">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </p>
-            
-            Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}}</span><br/>
-            Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}}</span><br/>
-            Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} </span><br/>
-            Terapia intensiva: <span class="badge badge-primary badge-pill float-right">{{detailValue.terapia_intensiva}} </span><br/>
-            Ricoverati: <span class="badge badge-primary badge-pill float-right">{{detailValue.ricoverati_con_sintomi}} </span><br/>
-            Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} </span><br/>
-            Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} </span><br/>
-            
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="lead">
+                        {{detailValue.denominazione_regione}}
+                        <button type="button" class="close" aria-label="Close" (click)="closeButton()" [hidden]="!showCloseButton">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </p>
+                    
+                    Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}}</span><br/>
+                    Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}}</span><br/>
+                    Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} </span><br/>
+                    Terapia intensiva: <span class="badge badge-primary badge-pill float-right">{{detailValue.terapia_intensiva}} </span><br/>
+                    Ricoverati: <span class="badge badge-primary badge-pill float-right">{{detailValue.ricoverati_con_sintomi}} </span><br/>
+                    Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} </span><br/>
+                    Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} </span><br/><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="lead">Numero verde</p>
+                    <div class="chip">
+                        <svg class="icon icon-xs"><use xlink:href="../assets/sprite.svg#it-telephone"></use></svg>
+                        <span class="chip-label">{{numeriEmergenza[detailValue.denominazione_regione]}}</span>
+                    </div>
+                    <p>Numero emergenza</p>
+                    <div class="chip">
+                        <svg class="icon icon-xs"><use xlink:href="../assets/sprite.svg#it-telephone"></use></svg>
+                        <span class="chip-label">112</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="col-sm-5">

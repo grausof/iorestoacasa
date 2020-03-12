@@ -46,6 +46,30 @@ export class MapsComponent implements OnInit {
   imageSeries;
   circle;
   circle2;
+  numeriEmergenza = {
+    'Italia':'1500',
+    'Basilicata':'800 99 66 88',
+    'Calabria':'800 76 76 76',
+    'Campania':'800 90 96 99',
+    'Emilia Romagna':'800 033 033',
+    'Friuli V. G.': '800 500 300',
+    'Lazio': '800 11 88 00',
+    'Lombardia': '800 89 45 45',
+    'Marche': '800 93 66 77',
+    'Piemonte':'800 19 20 20',
+    'P.A. Trento':'800 867 388',
+    'P.A. Bolzano':'800 751 751',
+    'Puglia':'800 713 931',
+    'Sardegna': '800 311 377',
+    'Sicilia': '800 45 87 87',
+    'Toscana': '800 55 60 60',
+    'Umbria': '800 63 63 63',
+    'Valle d\'Aosta': '800 122 121',
+    'Veneto': '800 462 340',
+    'Abruzzo': '800 860 146',
+    'Liguria': '112',
+    'Molise': '0874 313000'
+  }
 
 
   constructor(private http: HttpClient) {
