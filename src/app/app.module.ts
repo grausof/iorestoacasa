@@ -7,12 +7,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { MapsComponent } from './maps/maps.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpesaDomicilioComponent } from './spesa-domicilio/spesa-domicilio.component';
+import { CollaboraComponent } from './collabora/collabora.component';
 
 const appRoutes: Routes = [
   {
     path: 'spesa',
     component: SpesaDomicilioComponent,
     data: { title: 'Spesa a domicilio' },
+  },
+  {
+    path: 'collabora',
+    component: CollaboraComponent,
+    data: { title: 'Collabora con noi' },
   },
   { path: '',
   component: MapsComponent,
@@ -24,7 +30,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MapsComponent,
-    SpesaDomicilioComponent
+    SpesaDomicilioComponent,
+    CollaboraComponent
   ],
   imports: [
     BrowserModule,
