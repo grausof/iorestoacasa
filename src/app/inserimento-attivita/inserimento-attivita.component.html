@@ -7,12 +7,26 @@
             <div class="card">
                 <div class="card-body">
                 <h5 class="card-title">In costruzione</h5>
-                
+                <form novalidate #form="ngForm">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-2">
+                        <label for="name">Nome</label>
+                        <input type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Inserisci il tuo nome"
+                            [(ngModel)]="model.name">
+                        </div>
+                    </div>
+                </form>
+                <pre><code>{{ form.value | json }}</code></pre>
+                <pre><code>{{ model | json }}</code></pre>
                 </div>
             </div>
         </div>
         <!--end card-->
-
+        
         </div>
     </div>
 
