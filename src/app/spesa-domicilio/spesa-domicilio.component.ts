@@ -8,7 +8,9 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_kelly from "@amcharts/amcharts4/themes/kelly";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import {UtilityService} from "../utility.service"
-import negozi from './negozi.json';
+
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 am4core.useTheme(am4themes_kelly);
 am4core.useTheme(am4themes_animated);
@@ -24,14 +26,53 @@ export class SpesaDomicilioComponent implements OnInit {
   currentRegion = null;
   province = []
   currentProv;
-  negoziPerProvincia = []
+  currentCat;
+  attivita=[];
+  attivitaFiltered = [];
+  db: AngularFirestore;
 
 
   elencoRegioni = {"Marche": {"province": ["AN", "AP", "FM", "MC", "PU"], "capoluoghi": ["Ancona", "Ascoli Piceno", "Fermo", "Macerata", "Pesaro e Urbino"], "nome": "Marche"}, "Toscana": {"province": ["AR", "FI", "GR", "LI", "LU", "MS", "PI", "PT", "PO", "SI"], "capoluoghi": ["Arezzo", "Firenze", "Grosseto", "Livorno", "Lucca", "Massa e Carrara", "Pisa", "Pistoia", "Prato", "Siena"], "nome": "Toscana"}, "Calabria": {"province": ["CZ", "CS", "KR", "RC", "VV"], "capoluoghi": ["Catanzaro", "Cosenza", "Crotone", "Reggio Calabria", "Vibo Valentia"], "nome": "Calabria"}, "Friuli-Venezia Giulia": {"province": ["GO", "PN", "TS", "UD"], "capoluoghi": ["Gorizia", "Pordenone", "Trieste", "Udine"], "nome": "Friuli-Venezia Giulia"}, "Molise": {"province": ["CB", "IS"], "capoluoghi": ["Campobasso", "Isernia"], "nome": "Molise"}, "Lazio": {"province": ["FR", "LT", "RI", "RM", "VT"], "capoluoghi": ["Frosinone", "Latina", "Rieti", "Roma", "Viterbo"], "nome": "Lazio"}, "Liguria": {"province": ["GE", "IM", "SP", "SV"], "capoluoghi": ["Genova", "Imperia", "La Spezia", "Savona"], "nome": "Liguria"}, "Campania": {"province": ["AV", "BN", "CE", "NA", "SA"], "capoluoghi": ["Avellino", "Benevento", "Caserta", "Napoli", "Salerno"], "nome": "Campania"}, "Sardegna": {"province": ["CA", "CI", "VS", "NU", "OG", "OT", "OR", "SS"], "capoluoghi": ["Cagliari", "Carbonia-Iglesias", "Medio Campidano", "Nuoro", "Ogliastra", "Olbia-Tempio", "Oristano", "Sassari"], "nome": "Sardegna"}, "Abruzzo": {"province": ["CH", "AQ", "PE", "TE"], "capoluoghi": ["Chieti", "L'Aquila", "Pescara", "Teramo"], "nome": "Abruzzo"}, "Trentino-Alto Adige": {"province": ["BZ", "TN"], "capoluoghi": ["Bolzano", "Trento"], "nome": "Trentino-Alto Adige"}, "Piemonte": {"province": ["AL", "AT", "BI", "CN", "NO", "TO", "VB", "VC"], "capoluoghi": ["Alessandria", "Asti", "Biella", "Cuneo", "Novara", "Torino", "Verbano Cusio Ossola", "Vercelli"], "nome": "Piemonte"}, "Sicilia": {"province": ["AG", "CL", "CT", "EN", "ME", "PA", "RG", "SR", "TP"], "capoluoghi": ["Agrigento", "Caltanissetta", "Catania", "Enna", "Messina", "Palermo", "Ragusa", "Siracusa", "Trapani"], "nome": "Sicilia"}, "Emilia-Romagna": {"province": ["BO", "FE", "FC", "MO", "PR", "PC", "RA", "RE", "RN"], "capoluoghi": ["Bologna", "Ferrara", "Forl\u00ec-Cesena", "Modena", "Parma", "Piacenza", "Ravenna", "Reggio Emilia", "Rimini"], "nome": "Emilia-Romagna"}, "Veneto": {"province": ["BL", "PD", "RO", "TV", "VE", "VR", "VI"], "capoluoghi": ["Belluno", "Padova", "Rovigo", "Treviso", "Venezia", "Verona", "Vicenza"], "nome": "Veneto"}, "Basilicata": {"province": ["MT", "PZ"], "capoluoghi": ["Matera", "Potenza"], "nome": "Basilicata"}, "Puglia": {"province": ["BA", "BT", "BR", "LE", "FG", "TA"], "capoluoghi": ["Bari", "Barletta-Andria-Trani", "Brindisi", "Lecce", "Foggia", "Taranto"], "nome": "Puglia"}, "Lombardia": {"province": ["BG", "BS", "CO", "CR", "LC", "LO", "MN", "MI", "MB", "PV", "SO", "VA"], "capoluoghi": ["Bergamo", "Brescia", "Como", "Cremona", "Lecco", "Lodi", "Mantova", "Milano", "Monza e Brianza", "Pavia", "Sondrio", "Varese"], "nome": "Lombardia"}, "Umbria": {"province": ["PG", "TR"], "capoluoghi": ["Perugia", "Terni"], "nome": "Umbria"}, "Valle d'Aosta": {"province": ["AO"], "capoluoghi": ["Aosta"], "nome": "Valle d'Aosta"}}
-  constructor() { }
+  constructor(db: AngularFirestore) { 
+    this.db = db;
+  }
+
+
+  makeQuery(){
+    if(this.currentProv){
+
+      this.db.collection('attivita', ref => {
+        let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+        if (this.currentProv){query = query.where('prov', '==', this.currentProv)};
+        if (this.currentCat && this.currentCat!='all'){
+          query = query.where('category', '==', this.currentCat)
+        }
+        return query;
+      }).valueChanges().subscribe(attivita => {
+        this.attivita=attivita;
+        this.onCityChange('');
+      });;
+    }
+  }
+
+
+  onCityChange(city:string){
+    console.log("City change")
+    this.attivitaFiltered = this.attivita.filter(function (att) {
+      if(city!=''){
+        city = city.toLowerCase();
+        let currentCity = String(att.city).toLowerCase()
+        return currentCity.includes(city);
+      }
+      else
+        return true;
+    });
+    
+  }
 
 
   ngOnInit(): void {
+    
     let chart = am4core.create("chartdiv", am4maps.MapChart);
     // Set map definition
     chart.geodata = am4geodata_italyLow;
@@ -76,13 +117,8 @@ export class SpesaDomicilioComponent implements OnInit {
       this.currentRegion = selectedRegion;
       this.province = this.elencoRegioni[this.currentRegion].province
       this.currentProv = this.province[0]
+      this.makeQuery();
 
-      if(this.currentProv in negozi){
-        this.negoziPerProvincia = negozi[this.currentProv];
-      } else {
-        this.negoziPerProvincia=[]
-      }
-      
       ev.target.series.chart.zoomToMapObject(ev.target);
       
 
@@ -104,7 +140,8 @@ export class SpesaDomicilioComponent implements OnInit {
     let colorSet = new am4core.ColorSet();
 
     imageSeries.data = [ ]
-
+    
+    /*
     for (let prov in negozi) {
       let value = negozi[prov];
       value.forEach(negozio => {
@@ -118,7 +155,7 @@ export class SpesaDomicilioComponent implements OnInit {
           imageSeries.data.push(n);
         }
       });
-    }
+    }*/
 
 
     
@@ -129,13 +166,16 @@ export class SpesaDomicilioComponent implements OnInit {
   onProvChange(value:string){
     this.currentProv=this.province[value];
     console.log(this.currentProv)
-    if(this.currentProv in negozi){
-      this.negoziPerProvincia = negozi[this.currentProv];
-    } else {
-      this.negoziPerProvincia=[]
-    }
-}
+
+
+    this.makeQuery();
+  }
   
+  onCatChange(value:string){
+  this.currentCat = value
+  
+  this.makeQuery();
+  }
 
   
 

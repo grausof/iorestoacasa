@@ -9,30 +9,49 @@
         <div class="col-sm-6">
   
             <h5 [hidden]="!currentRegion">Regione selezionata: {{currentRegion}}</h5><br/>
-            
             <div [hidden]="!currentRegion">
-
-                <label>Seleziona la provincia: </label>
-                <select title="Scegli una opzione" #provSelect (change)='onProvChange(provSelect.value)'>
-                    <option *ngFor="let item of province; let i = index" [value]="i">
-                        {{item}}
-                    </option>
-                </select>
+                <div>
+                    <label for="selectCat">Seleziona la categoria:</label>
+                    <select title="Scegli la categoria"  id="selectCat" (change)='onCatChange(catSelect.value)' #catSelect>
+                        <option value="all">Tutte</option>
+                        <option value="Farmacia">Farmacia</option>
+                        <option value="Parafarmacia">Parafarmacia</option>
+                        <option value="Gastronomia">Gastronomia</option>
+                        <option value="Supermercato">Supermercato</option>
+                        <option value="Ferramenta">Ferramenta</option>
+                        <option value="Edicola">Edicola/Libreria</option>
+                        <option value="ProdottiAnimali">Prodotti per animali</option>
+                    </select>
                     
+                </div>
+                <div>
+                    <label for="selectProv">Seleziona la provincia: </label>
+                    <select  id="selectProv" title="Scegli una provincia" #provSelect (change)='onProvChange(provSelect.value)'>
+                        <option *ngFor="let item of province; let i = index" [value]="i">
+                            {{item}}
+                        </option>
+                    </select>
+                    
+                </div><br/>
+                <div class="form-group">
+                    <label for="exampleInputText">Comune: </label>
+                    <input id="exampleInputText" class="form-control" type="text" #city (change)='onCityChange(city.value)'>
+                </div>
             </div>
-            <p *ngIf="negoziPerProvincia.length == 0" [hidden]="!currentRegion">Ancora nessuna attività presente nella tua zona</p>
+          
+            <p *ngIf="attivitaFiltered.length==0" [hidden]="!currentRegion">Ancora nessuna attività presente nella tua zona</p>
             <div class="it-list-wrapper">
                 <ul class="it-list">
-                    <li *ngFor="let neg of negoziPerProvincia">
-                    <a class="" *ngIf="!neg.shipment">
-                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
-                        <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
+                    <li *ngFor="let neg of attivitaFiltered">
+                    <a class="" *ngIf="neg.website==''">
+                        <div class="it-right-zone"><span class="text">{{neg.name}}<em>{{neg.address}} | {{neg.city}}({{neg.prov}})</em>
+                        <span class="metadata" *ngIf="neg.phone">{{neg.phone}} - {{neg.email}}</span>
                         </span>
                         </div>
                     </a>
-                    <a class="" *ngIf="neg.shipment" [href]="neg.shipment" target="_blank">
-                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
-                        <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
+                    <a class="" *ngIf="neg.website!=''" [href]="neg.website" target="_blank">
+                        <div class="it-right-zone"><span class="text">{{neg.name}}<em>{{neg.address}} | {{neg.city}}({{neg.prov}})</em> 
+                        <span class="metadata">{{neg.phone}} - {{neg.email}}</span>
                         </span>
                         </div>
                     </a>
