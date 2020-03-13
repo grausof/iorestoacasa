@@ -8,6 +8,7 @@ import { MapsComponent } from './maps/maps.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpesaDomicilioComponent } from './spesa-domicilio/spesa-domicilio.component';
 import { CollaboraComponent } from './collabora/collabora.component';
+import { InserimentoAttivitaComponent } from './inserimento-attivita/inserimento-attivita.component';
 
 const appRoutes: Routes = [
   {
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     MapsComponent,
     SpesaDomicilioComponent,
-    CollaboraComponent
+    CollaboraComponent,
+    InserimentoAttivitaComponent
   ],
   imports: [
     BrowserModule,
