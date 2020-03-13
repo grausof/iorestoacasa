@@ -15,14 +15,9 @@ export class InserimentoAttivitaComponent implements OnInit {
     
    }
 
-   model: Appointment = {
+   model: Attivita = {
     name: '',
-    mail: '',
-    dayOfTheWeek: 'Lunedì',
-    office: 'ufficio_A',
-    application0: false,
-    application1: false,
-    application2: false
+
   };
 
   ngOnInit(): void {
@@ -30,12 +25,7 @@ export class InserimentoAttivitaComponent implements OnInit {
 
 }
 
-export interface Appointment {
+export interface Attivita {
   name: string;
-  mail: string;
-  dayOfTheWeek: string;
-  office: string;
-  application0: boolean;
-  application1: boolean;
-  application2: boolean;
+
 }
