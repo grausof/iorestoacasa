@@ -298,6 +298,14 @@ export class MapsComponent implements OnInit {
   series3.bullets.push(new am4charts.CircleBullet());
   series3.tooltipText = "Guariti: {dimessi_guariti}";
 
+  var series4 = lineChart.series.push(new am4charts.LineSeries());
+  series4.dataFields.valueY = "totale_attualmente_positivi";
+  series4.dataFields.dateX = "data";
+  series4.name = 'Totale positivi';
+  series4.strokeWidth = 1;
+  series4.bullets.push(new am4charts.CircleBullet());
+  series4.tooltipText = "Totale positivi: {totale_attualmente_positivi}";
+
 
 
 
