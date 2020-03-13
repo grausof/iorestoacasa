@@ -1,7 +1,7 @@
 <div class="container my-1">
 
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col">
             <h4>Casi per regione</h4>
             <ul class="nav nav-tabs auto">
                 <li class="nav-item"><a [ngClass]="{'active': showRegion}" class="nav-link" href="#" (click)="switchToRegion()">Regioni</a></li>
@@ -9,7 +9,7 @@
             </ul>
             <div id="chartdiv"></div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-*">
             <h4>Numeri</h4>
             <div class="row">
                 <div class="col-sm-12">
@@ -19,7 +19,7 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </p>
-                    
+
                     Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}}</span><br/>
                     Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}}</span><br/>
                     Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} </span><br/>
@@ -44,8 +44,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col-sm-5">
+
+        <div class="col">
             <h4>Andamento giornaliero</h4>
             <div id="linearchart"></div>
         </div>
@@ -57,7 +57,7 @@
 
 
 <div class="container my-2">
-    
+
     <div class="row">
         <div class="col-sm-4">
             <div class="card-wrapper card-space">
@@ -97,7 +97,7 @@
                             <use xlink:href="../assets/sprite.svg#it-arrow-right"></use>
                             </svg>
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -126,8 +126,8 @@
     </div>
 </div>
 <div class="container my-3">
-    
+
     <div class="row">
-        
+
     </div>
 </div>
