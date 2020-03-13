@@ -17,6 +17,11 @@ const appRoutes: Routes = [
     data: { title: 'Spesa a domicilio' },
   },
   {
+    path: 'inserisci-attivita',
+    component: InserimentoAttivitaComponent,
+    data: { title: 'Inserimento attività' },
+  },
+  {
     path: 'collabora',
     component: CollaboraComponent,
     data: { title: 'Collabora con noi' },
