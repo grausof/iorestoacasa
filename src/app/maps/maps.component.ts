@@ -46,6 +46,8 @@ export class MapsComponent implements OnInit {
   imageSeries;
   circle;
   circle2;
+  allDataRegion=[];
+  lineChart;
   numeriEmergenza = {
     'Italia':'1500',
     'Basilicata':'800 99 66 88',
@@ -79,6 +81,8 @@ export class MapsComponent implements OnInit {
   closeButton(){
     this.detailValue = UtilityService.calculateSum(this.datiPerRegione, this.detailValue);
     this.showCloseButton = false;
+    this.lineChart.data = this.temporalData;
+    this.lineChart.validateData();
   }
 
   requestToServer( url){
@@ -90,7 +94,9 @@ export class MapsComponent implements OnInit {
     let yesterdaydate = UtilityService.dateToString(yesterday);
     
     this.http.get(url).subscribe((data: any) => {
-
+      if(this.showRegion){
+        this.allDataRegion = []
+      }
       this.datiPerRegione = {}
       
       data.forEach(element => {
@@ -100,6 +106,10 @@ export class MapsComponent implements OnInit {
           dateMaps[data] = [];
         } 
         dateMaps[data].push(element)
+
+        if(this.showRegion){
+          this.allDataRegion.push(element);
+        }
       });
 
       let date;
@@ -211,6 +221,13 @@ export class MapsComponent implements OnInit {
   
       this.detailValue = val;
       console.log(val);
+      this.lineChart.data = []
+      this.allDataRegion.forEach(element => {
+        if(element.denominazione_regione==tappedRegion){
+          this.lineChart.data.push(element)
+        }
+      });
+      this.lineChart.validateData();
     }
     
   }, this);
@@ -257,24 +274,24 @@ export class MapsComponent implements OnInit {
     data.forEach(element => {
       this.temporalData.push(element)
     });
-    lineChart.validateData();
+    this.lineChart.validateData();
   });
   
-  let lineChart = am4core.create("linearchart", am4charts.XYChart);
+  this.lineChart = am4core.create("linearchart", am4charts.XYChart);
   // Add data
-  lineChart.data = this.temporalData
-
+  this.lineChart.data = this.temporalData;
+  
   // Set input format for the dates
-  lineChart.dateFormatter.inputDateFormat = "yyyy-MM-dd hh:mm:ss";
+  this.lineChart.dateFormatter.inputDateFormat = "yyyy-MM-dd hh:mm:ss";
 
   // Create axes
-  let dateAxis = lineChart.xAxes.push(new am4charts.DateAxis());
+  let dateAxis = this.lineChart.xAxes.push(new am4charts.DateAxis());
 
-  let valueAxis = lineChart.yAxes.push(new am4charts.ValueAxis());
+  let valueAxis = this.lineChart.yAxes.push(new am4charts.ValueAxis());
 
   // Create series
 
-  var series1 = lineChart.series.push(new am4charts.LineSeries());
+  var series1 = this.lineChart.series.push(new am4charts.LineSeries());
   series1.dataFields.valueY = "totale_casi";
   series1.dataFields.dateX = "data";
   series1.name = 'Casi totali';
@@ -282,7 +299,7 @@ export class MapsComponent implements OnInit {
   series1.bullets.push(new am4charts.CircleBullet());
   series1.tooltipText = "Totale: {totale_casi}";
 
-  var series2 = lineChart.series.push(new am4charts.LineSeries());
+  var series2 = this.lineChart.series.push(new am4charts.LineSeries());
   series2.dataFields.valueY = "deceduti";
   series2.dataFields.dateX = "data";
   series2.name = 'Deceduti';
@@ -290,7 +307,7 @@ export class MapsComponent implements OnInit {
   series2.bullets.push(new am4charts.CircleBullet());
   series2.tooltipText = "Deceduti: {deceduti}";
 
-  var series3 = lineChart.series.push(new am4charts.LineSeries());
+  var series3 = this.lineChart.series.push(new am4charts.LineSeries());
   series3.dataFields.valueY = "dimessi_guariti";
   series3.dataFields.dateX = "data";
   series3.name = 'Guariti';
@@ -298,7 +315,7 @@ export class MapsComponent implements OnInit {
   series3.bullets.push(new am4charts.CircleBullet());
   series3.tooltipText = "Guariti: {dimessi_guariti}";
 
-  var series4 = lineChart.series.push(new am4charts.LineSeries());
+  var series4 = this.lineChart.series.push(new am4charts.LineSeries());
   series4.dataFields.valueY = "totale_attualmente_positivi";
   series4.dataFields.dateX = "data";
   series4.name = 'Totale attualmente positivi';
@@ -310,21 +327,21 @@ export class MapsComponent implements OnInit {
 
 
 
-  lineChart.cursor = new am4charts.XYCursor();
-  lineChart.cursor.behavior = "zoomY";
+  this.lineChart.cursor = new am4charts.XYCursor();
+  this.lineChart.cursor.behavior = "zoomY";
 
   
 
   // Create a horizontal scrollbar with previe and place it underneath the date axis
-  lineChart.scrollbarX = new am4charts.XYChartScrollbar();
-  //lineChart.scrollbarX.series.push(series1);
-  lineChart.scrollbarX.parent = lineChart.bottomAxesContainer;
+  this.lineChart.scrollbarX = new am4charts.XYChartScrollbar();
+  //this.lineChart.scrollbarX.series.push(series1);
+  this.lineChart.scrollbarX.parent = this.lineChart.bottomAxesContainer;
 
   dateAxis.start = 0.1;
   dateAxis.keepSelection = true;
 
   // Add legend
-  lineChart.legend = new am4charts.Legend();
+  this.lineChart.legend = new am4charts.Legend();
 
   }
 
