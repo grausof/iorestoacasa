@@ -20,9 +20,29 @@ Abbiamo aperto un canale su [slack](https://join.slack.com/t/iorestoacasa/shared
 git clone https://github.com/grausof/iorestoacasa.git
 cd iorestoacasa
 yarn install
+mkdir src/environments
+```
+nella cartella src/environments creare i file environment.ts:
+```
+export const environment = {
+    production: false,
+    firebase: {
+        apiKey: "",
+        authDomain: "",
+        databaseURL: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: "",
+        measurementId: ""
+      }
+  };
+```
+e environment.prod.ts con lo stesso contenuto avendo l'accortezza di impostare l'attributo production su true.
+Infine è possibile lanciare l'app:
+```
 yarn start
 ```
-
 ## Live site
 
 https://io-restoacasa.web.app/
