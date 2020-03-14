@@ -14,10 +14,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 
-import { environment } from './../environments/environment';
-
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { DonazioniComponent } from './donazioni/donazioni.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 const appRoutes: Routes = [
@@ -61,7 +61,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
 
   providers: [],
