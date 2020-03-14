@@ -1,0 +1,51 @@
+<div class="container my-1">
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card-wrapper">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Sostieni l’emergenza COVID-19, il tuo aiuto è prezioso! </h5>
+                <p>
+                    Di seguito puoi trovare un elenco di istituzioni verificate che hanno messo a disposizione un codice IBAN per effettuare una donazione a favore degli ospedali, asl ed enti di ricerca per la lotta contro il coronavirus. 
+                </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container my-2">
+    <div class="row">
+        <div *ngFor="let ente of enti" class="col-md-4 col-sm-6 col-12">
+            <!--start card-->
+            <div class="card-wrapper card-space">
+            <div class="card card-bg card-big">
+                <div class="card-body">
+                <div class="top-icon">
+                    <svg class="icon">
+                    <use xlink:href="/assets/sprite.svg#it-card"></use>
+                    </svg>
+                </div>
+                <h5 class="card-title">Regione {{ente.regione}}</h5>
+                <p class="card-text">
+                
+                <b>IBAN: </b>{{ente.IBAN}}<br/>
+                <b>Intestato a: </b>{{ente.intestatario}}<br/>
+                <b>Causale: </b>{{ente.causale}}<br/>
+                </p>
+                <a class="read-more" [href]="ente.link" target="_blank">
+                    <span class="text">Altre informazioni</span>
+                    <svg class="icon">
+                    <use xlink:href="/assets/sprite.svg#it-arrow-right"></use>
+                    </svg>
+                </a>
+                </div>
+            </div>
+            </div>
+            <!--end card-->
+        </div>
+        
+    </div>
+</div>

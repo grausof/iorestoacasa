@@ -1,0 +1,146 @@
+[
+{
+	"regione":"Abruzzo",
+	"IBAN":"IT48V0538712917000000040300",
+	"causale":"Erogazione liberale emergenza Coronavirus",
+	"intestatario":"Regione Abruzzo- Giunta regionale",
+	"link":"https://www.regione.abruzzo.it/content/emergenza-coronavirus-attivato-conto-corrente-donazioni",
+	"verified":true
+
+},
+{
+	"regione":"Basilicata",
+	"IBAN":"IT19Q0542404297000000000382",
+	"causale":"Donazione emergenza Coronavirus",
+	"intestatario":"Regione Basilicata",
+	"link":"https://www.regione.basilicata.it/giunta/site/Giunta/detail.jsp?otype=1012&id=3063835",
+	"verified":true
+
+},
+{
+	"regione":"Campania",
+	"IBAN":"IT38V0306903496100000046030",
+	"causale":"COVID-19 DONAZIONE",
+	"intestatario":"Regione Campania",
+	"link":"http://regione.campania.it/regione/it/news/primo-piano/coronavirus-raccolta-fondi-per-l-emergenza-ecco-il-conto-corrente",
+	"verified":true
+
+},
+{
+	"regione":"Emilia Romagna",
+	"IBAN":"IT69G0200802435000104428964",
+	"causale":"Insieme si può: l'Emilia-Romagna contro il Coronavirus",
+	"intestatario":"Protezione civile regionale",
+	"link":"http://www.regione.emilia-romagna.it/coronavirus/donazioni",
+	"verified":true
+
+},
+{
+	"regione":"Friuli Venezia Giulia",
+	"IBAN":"IT47W0200802230000003120964",
+	"causale":"Donazioni CORONAVIRUS FVG",
+	"intestatario":"Regione Autonoma Friuli Venezia Giulia",
+	"link":"https://www.protezionecivile.fvg.it/it/la-protezione-civile/eventi/coronavirus-al-la-raccolta-fondi-ioaiuto-il-fvg",
+	"verified":true
+
+},
+{
+	"regione":"Lazio - Spallanzani",
+	"IBAN":"IT75A0200805140000400005240",
+	"causale":"NOME, COGNOME, Donazione a favore dell’INMI L. Spallanzani per emergenza Coronavirus",
+	"intestatario":"I.R.C.C.S. L. SPALLANZANI",
+	"link":"https://www.inmi.it/donare",
+	"verified":true
+
+},
+{
+	"regione":"Liguria",
+	"IBAN":"IT36F0617501406000002857680",
+	"causale":"REGIONE LIGURIA – SOSTEGNO EMERGENZA CORONAVIRUS”. Banca Carige spa ag 6 – piazza Dante 40 R – 16121 Genova",
+	"intestatario":"Regione Liguria",
+	"link":"https://www.regione.liguria.it/homepage/salute-e-sociale/homepage-coronavirus/donazioni-coronavirus.html",
+	"verified":true
+
+},
+{
+	"regione":"Lombardia",
+	"IBAN":"IT76P0306909790100000300089",
+	"causale":"REGIONE LOMBARDIA – SOSTEGNO EMERGENZA CORONAVIRUS",
+	"intestatario":"Regione Lombardia",
+	"link":"https://www.regione.lombardia.it/wps/wcm/connect/3e330422-658a-47fb-bdd7-2821fb96cc5e/DONA....3.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-3e330422-658a-47fb-bdd7-2821fb96cc5e-n319Fcq",
+	"verified":true
+
+},
+{
+	"regione":"Marche",
+	"IBAN":"IT43A0760102600001049330432",
+	"causale":"EMERGENZA MARCHE CORONAVIRUS SERVIZIO TESORERIA",
+	"intestatario":"Regione Marche",
+	"link":"http://www.regione.marche.it/News-ed-Eventi/Post/60831/Donazioni-sicure-Coronavirus",
+	"verified":true
+
+},
+{
+	"regione":"Molise - A.S.L.",
+	"IBAN":"IT03B0538703800000000536260",
+	"causale":"Emergenza Coronavirus - Nome, Cognome, CF, email",
+	"intestatario":"ASREM",
+	"link":"https://www.asrem.gov.it/2020/03/12/raccolta-fondi-per-lemergena-coronavirus/",
+	"verified":true
+
+},
+{
+	"regione":"Piemonte",
+	"IBAN":"IT29H0200801152000100689275",
+	"causale":"Regione Piemonte-Sostegno emergenza Coronavirus",
+	"intestatario":"Regione Piemonte",
+	"link":"https://www.regione.piemonte.it/web/pinforma/notizie/aperta-campagna-donazioni-per-gli-ospedali",
+	"verified":true
+
+},
+{
+	"regione":"Puglia",
+	"IBAN":"IT51C0306904013100000046029",
+	"causale":"DONAZIONI CORONAVIRUS REGIONE PUGLIA",
+	"intestatario":"Regione Puglia",
+	"link":"http://www.regione.puglia.it/web/pressregione/pressregione-rss/-/asset_publisher/V2vFLtqdAjTg/content/id/50675319",
+	"verified":true
+
+},
+{
+	"regione":"Sardegna - A.S.L.",
+	"IBAN":"IT88B0101517203000070727420",
+	"causale":"DONAZIONI CORONAVIRUS",
+	"intestatario":"Azienda per la tutela della Salute",
+	"link":"https://www.regione.sardegna.it/j/v/25?s=405417&v=2&c=94253&t=1",
+	"verified":true
+
+},
+{
+	"regione":"Toscana - AOU Careggi",
+	"IBAN":"IT06V0306902887100000046016",
+	"causale":"Donazione emergenza coronarovirus, ed inviare comunicazione presente sul sito",
+	"intestatario":"AOU Careggi",
+	"link":"https://www.aou-careggi.toscana.it/internet/index.php?option=com_content&view=article&id=5713&catid=92&Itemid=909&lang=it",
+	"verified":true
+
+},
+{
+	"regione":"Valle d’Aosta - U.S.L.",
+	"IBAN":"IT12F0200801210000103793253",
+	"causale":"Sostegno  emergenza CORONAVIRUS, seguito da nome,cognome indirizzo mail o recapito telefonico e codice fiscale del donante",
+	"intestatario":"Azienda USL Valle d’Aosta",
+	"link":"http://www.ausl.vda.it/notizie.asp?id=778&l=1&n=1157",
+	"verified":true
+
+},
+{
+	"regione":"Veneto",
+	"IBAN":"IT71V0200802017000105889030",
+	"causale":"Sostegno Emergenza Coronavirus",
+	"intestatario":"Regione del Veneto",
+	"link":"https://www.regione.veneto.it/article-detail?articleId=4335623",
+	"verified":true
+
+}
+]

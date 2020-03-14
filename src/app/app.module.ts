@@ -17,6 +17,7 @@ import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire
 import { environment } from './../environments/environment';
 
 import { FormsModule } from "@angular/forms";
+import { DonazioniComponent } from './donazioni/donazioni.component';
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,11 @@ const appRoutes: Routes = [
     path: 'spesa',
     component: SpesaDomicilioComponent,
     data: { title: 'Spesa a domicilio' },
+  },
+  {
+    path: 'donazioni',
+    component: DonazioniComponent,
+    data: { title: 'Donazioni' },
   },
   {
     path: 'collabora',
@@ -41,7 +47,8 @@ const appRoutes: Routes = [
     AppComponent,
     MapsComponent,
     SpesaDomicilioComponent,
-    CollaboraComponent
+    CollaboraComponent,
+    DonazioniComponent
   ],
   imports: [
     BrowserModule,
