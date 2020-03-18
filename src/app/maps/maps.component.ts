@@ -34,12 +34,19 @@ export class MapsComponent implements OnInit {
   detailValue = {
     denominazione_regione : "Italia",
     totale_casi : 0,
+    totale_casi_increment : 0,
     tamponi : 0,
+    tamponi_increment : 0,
     dimessi_guariti :  0,
+    dimessi_guariti_increment :  0,
     terapia_intensiva : 0,
+    terapia_intensiva_increment : 0,
     ricoverati_con_sintomi : 0,
+    ricoverati_con_sintomi_increment : 0,
     isolamento_domiciliare : 0,
+    isolamento_domiciliare_increment : 0,
     deceduti : 0,
+    deceduti_increment : 0,
   }
   colorSet = new am4core.ColorSet();
   mapChart;
@@ -90,8 +97,13 @@ export class MapsComponent implements OnInit {
     let dateMaps = {}
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate()-1);
+    var twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate()-2);
+
     let todaydate = UtilityService.dateToString(new Date());
     let yesterdaydate = UtilityService.dateToString(yesterday);
+    let twodaysagodate = UtilityService.dateToString(twoDaysAgo);
+
     
     this.http.get(url).subscribe((data: any) => {
       if(this.showRegion){
@@ -113,11 +125,14 @@ export class MapsComponent implements OnInit {
       });
 
       let date;
+      let previusDate;
       if (todaydate in dateMaps){
         date = dateMaps[todaydate];
+        previusDate = dateMaps[yesterdaydate];
         this.lastUpdate = todaydate;
       } else {
         date = dateMaps[yesterdaydate];
+        previusDate = dateMaps[twodaysagodate];
         this.lastUpdate = yesterdaydate;
       }
       
@@ -129,7 +144,18 @@ export class MapsComponent implements OnInit {
         let title = element.denominazione_regione
         if(!this.showRegion){
           title = element.denominazione_provincia
+        } else {
+          let yesterdayElement = UtilityService.getYesterdayValue(previusDate, element, this.showRegion);
+          element.totale_casi_increment = element.totale_casi - yesterdayElement.totale_casi;
+          element.tamponi_increment = element.tamponi - yesterdayElement.tamponi;
+          element.dimessi_guariti_increment = element.dimessi_guariti - yesterdayElement.dimessi_guariti;
+          element.terapia_intensiva_increment = element.terapia_intensiva - yesterdayElement.terapia_intensiva;
+          element.ricoverati_con_sintomi_increment = element.ricoverati_con_sintomi - yesterdayElement.ricoverati_con_sintomi;
+          element.isolamento_domiciliare_increment = element.isolamento_domiciliare - yesterdayElement.isolamento_domiciliare;
+          element.deceduti_increment = element.deceduti - yesterdayElement.deceduti;
         }
+        
+
         let v = {
           "title": title,
           "latitude": element.lat,
@@ -137,14 +163,16 @@ export class MapsComponent implements OnInit {
           "color":this.colorSet.next(),
           "value":element.totale_casi
         } 
+        
         arrayDetail.push(v);
         this.datiPerRegione[element.denominazione_regione]=element;
 
       });
       if(this.showRegion){
         this.detailValue = UtilityService.calculateSum(this.datiPerRegione, this.detailValue);
+        console.log(this.detailValue);
       }
-      
+
       this.imageSeries.data=arrayDetail;
       this.mapChart.validateData();
   });
@@ -218,9 +246,10 @@ export class MapsComponent implements OnInit {
       let tappedRegion = ev.target.dataItem.dataContext['title'];
       let val = this.datiPerRegione[tappedRegion];
       this.showCloseButton = true;
-  
+      
       this.detailValue = val;
-      console.log(val);
+      console.log(this.detailValue);
+
       this.lineChart.data = []
       this.allDataRegion.forEach(element => {
         if(element.denominazione_regione==tappedRegion){

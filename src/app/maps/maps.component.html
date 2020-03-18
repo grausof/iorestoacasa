@@ -1,7 +1,7 @@
 <div class="container my-1">
 
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <h4>Casi per regione</h4>
             <ul class="nav nav-tabs auto">
                 <li class="nav-item"><a [ngClass]="{'active': showRegion}" class="nav-link" href="#" (click)="switchToRegion()">Regioni</a></li>
@@ -9,7 +9,7 @@
             </ul>
             <div id="chartdiv"></div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <h4>Numeri</h4>
             <div class="row">
                 <div class="col-sm-12">
@@ -20,13 +20,13 @@
                         </button>
                     </p>
 
-                    Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}}</span><br/>
-                    Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}}</span><br/>
-                    Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} </span><br/>
-                    Terapia intensiva: <span class="badge badge-primary badge-pill float-right">{{detailValue.terapia_intensiva}} </span><br/>
-                    Ricoverati: <span class="badge badge-primary badge-pill float-right">{{detailValue.ricoverati_con_sintomi}} </span><br/>
-                    Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} </span><br/>
-                    Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} </span><br/><br/>
+                    Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}} (+{{detailValue.totale_casi_increment}})</span><br/>
+                    Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}} (+{{detailValue.tamponi_increment}})</span><br/>
+                    Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} (+{{detailValue.dimessi_guariti_increment}})</span><br/>
+                    Terapia intensiva: <span class="badge badge-primary badge-pill float-right">{{detailValue.terapia_intensiva}} (+{{detailValue.terapia_intensiva_increment}})</span><br/>
+                    Ricoverati: <span class="badge badge-primary badge-pill float-right">{{detailValue.ricoverati_con_sintomi}} (+{{detailValue.ricoverati_con_sintomi_increment}})</span><br/>
+                    Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} (+{{detailValue.isolamento_domiciliare_increment}})</span><br/>
+                    Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} (+{{detailValue.deceduti_increment}})</span><br/><br/>
                 </div>
             </div>
             <div class="row">
