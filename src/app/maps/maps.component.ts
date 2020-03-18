@@ -35,6 +35,8 @@ export class MapsComponent implements OnInit {
     denominazione_regione : "Italia",
     totale_casi : 0,
     totale_casi_increment : 0,
+    totale_attualmente_positivi:0,
+    totale_attualmente_positivi_increment:0,
     tamponi : 0,
     tamponi_increment : 0,
     dimessi_guariti :  0,
@@ -126,6 +128,7 @@ export class MapsComponent implements OnInit {
 
       let date;
       let previusDate;
+      
       if (todaydate in dateMaps){
         date = dateMaps[todaydate];
         previusDate = dateMaps[yesterdaydate];
@@ -136,7 +139,12 @@ export class MapsComponent implements OnInit {
         this.lastUpdate = yesterdaydate;
       }
       
+      
       date.forEach(element => {
+        element = UtilityService.convertToInt(element);
+        
+
+
         let value = element.totale_casi;
         if(value > this.maxValue){
           this.maxValue = value
@@ -146,7 +154,10 @@ export class MapsComponent implements OnInit {
           title = element.denominazione_provincia
         } else {
           let yesterdayElement = UtilityService.getYesterdayValue(previusDate, element, this.showRegion);
+          yesterdayElement = UtilityService.convertToInt(yesterdayElement);
           element.totale_casi_increment = element.totale_casi - yesterdayElement.totale_casi;
+          element.totale_attualmente_positivi_increment = element.totale_attualmente_positivi - yesterdayElement.totale_attualmente_positivi;
+
           element.tamponi_increment = element.tamponi - yesterdayElement.tamponi;
           element.dimessi_guariti_increment = element.dimessi_guariti - yesterdayElement.dimessi_guariti;
           element.terapia_intensiva_increment = element.terapia_intensiva - yesterdayElement.terapia_intensiva;

@@ -20,13 +20,18 @@
                         </button>
                     </p>
 
-                    Totale casi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}} (+{{detailValue.totale_casi_increment}})</span><br/>
-                    Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}} (+{{detailValue.tamponi_increment}})</span><br/>
+                    
+                    Totale positivi: <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_attualmente_positivi}} (+{{detailValue.totale_attualmente_positivi_increment}})</span><br/>
                     Dimessi guariti: <span class="badge badge-primary badge-pill float-right">{{detailValue.dimessi_guariti}} (+{{detailValue.dimessi_guariti_increment}})</span><br/>
+                    Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} (+{{detailValue.deceduti_increment}})</span><br/>
+                    <b>Totale casi:</b> <span class="badge badge-primary badge-pill float-right">{{detailValue.totale_casi}} (+{{detailValue.totale_casi_increment}})</span><br/><br/>
+
+                    Tamponi: <span class="badge badge-primary badge-pill float-right">{{detailValue.tamponi}} (+{{detailValue.tamponi_increment}})</span><br/>
                     Terapia intensiva: <span class="badge badge-primary badge-pill float-right">{{detailValue.terapia_intensiva}} (+{{detailValue.terapia_intensiva_increment}})</span><br/>
                     Ricoverati: <span class="badge badge-primary badge-pill float-right">{{detailValue.ricoverati_con_sintomi}} (+{{detailValue.ricoverati_con_sintomi_increment}})</span><br/>
-                    Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} (+{{detailValue.isolamento_domiciliare_increment}})</span><br/>
-                    Deceduti: <span class="badge badge-primary badge-pill float-right">{{detailValue.deceduti}} (+{{detailValue.deceduti_increment}})</span><br/><br/>
+                    Isolamento: <span class="badge badge-primary badge-pill float-right">{{detailValue.isolamento_domiciliare}} (+{{detailValue.isolamento_domiciliare_increment}})</span><br/><br/>
+                    
+                    
                 </div>
             </div>
             <div class="row">
@@ -54,7 +59,11 @@
         <div class="float-left">Ultimo aggiornamento: {{lastUpdate}}</div>
     </div>
 </div>
-
+<div class="container my-1">
+    <div class="alert alert-danger" role="alert">
+    18/03/2020 - Dati Regione Campania e provincia di Parma non pervenuti!
+    </div>
+</div>
 
 <div class="container my-2">
 
