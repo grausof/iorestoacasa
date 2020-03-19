@@ -386,7 +386,7 @@ export class MapsComponent implements OnInit {
 
   // Add legend
   this.lineChart.legend = new am4charts.Legend();
-
+  /*
   //README
   this.http.get(this.readmeUrl, {responseType:'text'}).subscribe((data: any) => {
 
@@ -399,7 +399,7 @@ export class MapsComponent implements OnInit {
     this.alertMessage = alertMsg;
 
   });
-  
+  */
   //Decessi per eta
   this.http.get(this.decessiUrl).subscribe((data: any) => {
     barChart.data = data;
