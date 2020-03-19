@@ -11,6 +11,7 @@ import am4themes_kelly from "@amcharts/amcharts4/themes/kelly";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import {UtilityService} from "../utility.service"
 
+
 am4core.useTheme(am4themes_kelly);
 am4core.useTheme(am4themes_animated);
 
@@ -24,6 +25,9 @@ export class MapsComponent implements OnInit {
   detailRegioniUrl = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json';
   detailProvinceUrl = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json';
   temporallUrl = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json';
+  readmeUrl = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/README.md';
+  decessiUrl = 'https://raw.githubusercontent.com/grausof/COVID-19/master/dati-decessi/decessi-eta-20200318.json';
+  decessiPatologieUrl = 'https://raw.githubusercontent.com/grausof/COVID-19/master/dati-decessi/decessi-patologie-20200318.json';
 
   datiPerRegione = {}
   maxValue = 0
@@ -81,7 +85,7 @@ export class MapsComponent implements OnInit {
     'Liguria': '112',
     'Molise': '0874 313000'
   }
-
+  alertMessage = "18/03/2020 - Dati Regione Campania e provincia di Parma non pervenuti!";
 
   constructor(private http: HttpClient) {
 
@@ -382,6 +386,125 @@ export class MapsComponent implements OnInit {
 
   // Add legend
   this.lineChart.legend = new am4charts.Legend();
+
+  //README
+  this.http.get(this.readmeUrl, {responseType:'text'}).subscribe((data: any) => {
+
+    let readme = data;
+    var alertMsg = readme.substring(readme.indexOf("```diff")+8, readme.length);
+    alertMsg = alertMsg.substring(0, alertMsg.indexOf("```"));
+
+    alertMsg = alertMsg.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    alertMsg = alertMsg.split("<br>")[0]
+    this.alertMessage = alertMsg;
+
+  });
+  
+  //Decessi per eta
+  this.http.get(this.decessiUrl).subscribe((data: any) => {
+    barChart.data = data;
+    barChart.validateData();
+  });
+
+  //Decessi per patologie
+  /*
+  this.http.get(this.decessiPatologieUrl).subscribe((data: any) => {
+    pieChart.data=data;
+    pieChart.validateData();
+  });
+  */
+
+
+
+  let barChart = am4core.create('barChart', am4charts.XYChart)
+  barChart.colors.step = 2;
+
+  barChart.legend = new am4charts.Legend()
+  barChart.legend.position = 'top'
+  barChart.legend.paddingBottom = 10
+  barChart.legend.labels.template.maxWidth = 90
+
+
+  let xAxis = barChart.xAxes.push(new am4charts.CategoryAxis())
+  xAxis.dataFields.category = 'age'
+  xAxis.renderer.cellStartLocation = 0.1
+  xAxis.renderer.cellEndLocation = 0.9
+  xAxis.renderer.grid.template.location = 0;
+
+  let yAxis = barChart.yAxes.push(new am4charts.ValueAxis());
+  yAxis.min = 0;
+
+  function createSeries(value, name) {
+      let series = barChart.series.push(new am4charts.ColumnSeries())
+      series.dataFields.valueY = value
+      series.dataFields.categoryX = 'age'
+      series.name = name
+
+      series.events.on("hidden", arrangeColumns);
+      series.events.on("shown", arrangeColumns);
+
+      let bullet = series.bullets.push(new am4charts.LabelBullet())
+      bullet.interactionsEnabled = false
+      bullet.dy = -10;
+      bullet.label.text = '{valueY}'
+      bullet.label.fill = am4core.color('#000000')
+      bullet.label.fontSize = 10;
+      return series;
+  }
+
+  createSeries('men', 'Uomini');
+  createSeries('women', 'Donne');
+  createSeries('total', 'Totale');
+  /*
+  let pieChart = am4core.create("pieChart", am4charts.PieChart3D);
+  pieChart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+  pieChart.legend = new am4charts.Legend();
+
+  let series = pieChart.series.push(new am4charts.PieSeries3D());
+  series.dataFields.value = "percentage";
+  series.dataFields.category = "number_diseases";
+  */
+
+  function arrangeColumns() {
+
+    var series = barChart.series.getIndex(0);
+
+    var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
+    if (series.dataItems.length > 1) {
+        var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
+        var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
+        var delta = ((x1 - x0) / barChart.series.length) * w;
+        if (am4core.isNumber(delta)) {
+            var middle = barChart.series.length / 2;
+
+            var newIndex = 0;
+            barChart.series.each(function(series) {
+                if (!series.isHidden && !series.isHiding) {
+                    series.dummyData = newIndex;
+                    newIndex++;
+                }
+                else {
+                    series.dummyData = barChart.series.indexOf(series);
+                }
+            })
+            var visibleCount = newIndex;
+            var newMiddle = visibleCount / 2;
+
+            barChart.series.each(function(series) {
+                var trueIndex = barChart.series.indexOf(series);
+                var newIndex = series.dummyData;
+
+                var dx = (newIndex - trueIndex + middle - newMiddle) * delta
+
+                series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+                series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+            })
+        }
+    }
+  }
+
+
+
 
   }
 

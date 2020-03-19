@@ -53,15 +53,33 @@
         <div class="col-sm-5">
             <h4>Andamento giornaliero</h4>
             <div id="linearchart"></div>
+            <button type="button" class="btn btn-outline-primary btn-xs float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Decessi per fasce d'età</button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                
+                    <h4>Decessi per fasce d'età</h4>
+                    <div id="barChart"></div>
+
+                    <div class="row">
+                        <div class="float-left">Ultimo aggiornamento: 17/03/2020 (Comunicato <a href="https://www.epicentro.iss.it/coronavirus/bollettino/Report-COVID-2019_17_marzo-v2.pdf" target="_blank">N° 22/2020 ISS</a>)</div>
+                    </div>
+
+                    </div>
+  
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="float-left">Ultimo aggiornamento: {{lastUpdate}}</div>
+        
     </div>
 </div>
+
 <div class="container my-1">
-    <div class="alert alert-danger" role="alert">
-    18/03/2020 - Dati Regione Campania e provincia di Parma non pervenuti!
+    <div class="alert alert-danger" role="alert" [innerHTML]="alertMessage">
+
     </div>
 </div>
 
