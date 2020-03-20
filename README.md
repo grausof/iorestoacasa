@@ -43,6 +43,19 @@ Infine è possibile lanciare l'app:
 ```
 yarn start
 ```
+## Docker
+E' possibile lanciare l'ambiente di produzione anche sfruttando l'immagine Docker.
+Eseguire la build dell'immagine tramite il seguente comando:
+```
+docker build -t iorestoacasa . 
+```
+e poi lanciare il server
+```
+docker run -p 8080:80 -d  iorestoacasa
+```
+la piattaforma sarà quindi raggiungibile all'indirizzo: http://127.0.0.1:8080
+
+
 ## Live site
 
 https://io-restoacasa.web.app/
