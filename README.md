@@ -7,7 +7,7 @@ Seguendo quanto è stato fatto dalla [comunità cinese di Whuan](https://communi
 
 Possono partecipare tutti: programmatori, product manager, progettisti, project manager, analisti dati, raccoglitori di informazioni, traduttori, operatori di comunicazione, studenti, ecc.
 
-Visita il sito web https://io-restoacasa.web.app/
+Visita il sito web https://restoacasa.github.io/
 
 ![Screenshot](https://github.com/grausof/iorestoacasa/blob/master/screenshot.png?raw=true)
 
@@ -58,7 +58,7 @@ la piattaforma sarà quindi raggiungibile all'indirizzo: http://127.0.0.1:8080
 
 ## Live site
 
-https://io-restoacasa.web.app/
+https://restoacasa.github.io/
 
 ## Tutti insieme uniti, ce la faremo !
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/grausof/iorestoacasa)
