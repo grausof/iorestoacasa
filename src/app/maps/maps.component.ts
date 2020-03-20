@@ -176,7 +176,7 @@ export class MapsComponent implements OnInit {
           "latitude": element.lat,
           "longitude": element.long,
           "color":this.colorSet.next(),
-          "value":element.totale_casi
+          "value":element.totale_attualmente_positivi_increment
         } 
         
         arrayDetail.push(v);
