@@ -169,14 +169,14 @@ export class MapsComponent implements OnInit {
           element.isolamento_domiciliare_increment = element.isolamento_domiciliare - yesterdayElement.isolamento_domiciliare;
           element.deceduti_increment = element.deceduti - yesterdayElement.deceduti;
         }
-        
+
 
         let v = {
           "title": title,
           "latitude": element.lat,
           "longitude": element.long,
           "color":this.colorSet.next(),
-          "value":element.totale_attualmente_positivi_increment
+          "value":element.totale_casi
         } 
         
         arrayDetail.push(v);
