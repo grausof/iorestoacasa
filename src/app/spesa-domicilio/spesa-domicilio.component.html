@@ -25,13 +25,15 @@
                 <ul class="it-list">
                     <li *ngFor="let neg of negoziPerProvincia">
                     <a class="" *ngIf="!neg.shipment">
-                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
+                        <div class="it-right-zone"><span class="text">{{neg.company}} {{neg.name}}<em>{{neg.address}}</em>
+                        <em *ngIf="neg.description">{{neg.description}}</em>
                         <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
                         </span>
                         </div>
                     </a>
                     <a class="" *ngIf="neg.shipment" [href]="neg.shipment" target="_blank">
-                        <div class="it-right-zone"><span class="text">{{neg.company}} - {{neg.name}}<em>{{neg.address}}</em>
+                        <div class="it-right-zone"><span class="text">{{neg.company}} {{neg.name}}<em>{{neg.address}}</em>
+                        <em *ngIf="neg.description">{{neg.description}}</em>
                         <span class="metadata" *ngIf="neg.phone">{{neg.phone}}</span>
                         </span>
                         </div>
