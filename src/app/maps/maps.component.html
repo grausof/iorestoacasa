@@ -52,6 +52,10 @@
 
         <div class="col-sm-5">
             <h4>Andamento giornaliero</h4>
+            <ul class="nav nav-tabs auto">
+                <li class="nav-item"><a [ngClass]="{'active': !showIncrement}" class="nav-link" href="#" (click)="switchToIncrement(false)">Andamento giornaliero</a></li>
+                <li class="nav-item"><a [ngClass]="{'active': showIncrement}" class="nav-link" href="#" (click)="switchToIncrement(true)">Incremento giornaliero</a></li>
+            </ul>
             <div id="linearchart"></div>
             <button type="button" class="btn btn-outline-primary btn-xs float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Decessi per fasce d'età</button>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -76,13 +80,13 @@
         
     </div>
 </div>
-
+<!--
 <div class="container my-1">
-    <div class="alert alert-danger" role="alert" [innerHTML]="alertMessage">
+    <div class="alert alert-danger" role="alert" >
     I dati di oggi 23/3/2020 verranno aggiornati in ritardo 
     </div>
 </div>
-
+-->
 <div class="container my-2">
 
     <div class="row">

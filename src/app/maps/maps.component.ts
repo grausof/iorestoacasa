@@ -34,7 +34,10 @@ export class MapsComponent implements OnInit {
   showCloseButton = false;
   lastUpdate = ""
   temporalData = []
+  temporalDataAllRegion = []
+
   showRegion = true;
+  showIncrement = false;
   detailValue = {
     denominazione_regione : "Italia",
     totale_casi : 0,
@@ -94,7 +97,8 @@ export class MapsComponent implements OnInit {
   closeButton(){
     this.detailValue = UtilityService.calculateSum(this.datiPerRegione, this.detailValue);
     this.showCloseButton = false;
-    this.lineChart.data = this.temporalData;
+    this.temporalData = [...this.temporalDataAllRegion]
+    this.lineChart.data = this.calculateTemporalIncrement(this.showIncrement)
     this.lineChart.validateData();
   }
 
@@ -208,10 +212,45 @@ export class MapsComponent implements OnInit {
     this.circle.radius = 1;
     this.circle2.radius = 1;
 
-
   }
 
+  switchToIncrement(increment){
+    this.showIncrement = increment;
+    if(increment){
+      this.lineChart.data = this.calculateTemporalIncrement(true)
+    } else {
+      this.lineChart.data = this.calculateTemporalIncrement(false)
+    }
+    this.lineChart.validateData();
+    
+  }
 
+  calculateTemporalIncrement(increment){
+    
+    let latElement = undefined
+    let temporalDataIncrement = []
+
+    this.temporalData.forEach(element => {
+      if(increment){
+        if(latElement!=undefined){
+          let e = {
+            'totale_casi':-latElement['totale_casi']+element['totale_casi'],
+            'deceduti':-latElement['deceduti']+element['deceduti'],
+            'dimessi_guariti':-latElement['dimessi_guariti']+element['dimessi_guariti'],
+            'totale_attualmente_positivi':-latElement['totale_attualmente_positivi']+element['totale_attualmente_positivi'],
+            'data':element['data']
+          }
+          temporalDataIncrement.push(e);
+        }
+        latElement = element;
+      } else {
+        temporalDataIncrement.push(element);
+      }
+      
+    });
+    console.log(temporalDataIncrement)
+    return temporalDataIncrement;
+  }
   ngOnInit(): void {
 
   let title = "ITALIA";
@@ -265,12 +304,16 @@ export class MapsComponent implements OnInit {
       this.detailValue = val;
       console.log(this.detailValue);
 
-      this.lineChart.data = []
+      this.temporalDataAllRegion = [...this.temporalData];
+      this.temporalData = []
       this.allDataRegion.forEach(element => {
         if(element.denominazione_regione==tappedRegion){
-          this.lineChart.data.push(element)
+          this.temporalData.push(element)
         }
       });
+
+      this.lineChart.data = this.calculateTemporalIncrement(this.showIncrement)
+      
       this.lineChart.validateData();
     }
     
@@ -315,15 +358,17 @@ export class MapsComponent implements OnInit {
   /* MAP Chart end */
 
   this.http.get(this.temporallUrl).subscribe((data: any) => {
+    
     data.forEach(element => {
       this.temporalData.push(element)
     });
+    this.lineChart.data = this.calculateTemporalIncrement(this.showIncrement)
     this.lineChart.validateData();
   });
   
   this.lineChart = am4core.create("linearchart", am4charts.XYChart);
   // Add data
-  this.lineChart.data = this.temporalData;
+  this.lineChart.data = this.calculateTemporalIncrement(false)
   
   // Set input format for the dates
   this.lineChart.dateFormatter.inputDateFormat = "yyyy-MM-dd hh:mm:ss";
