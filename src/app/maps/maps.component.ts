@@ -123,7 +123,7 @@ export class MapsComponent implements OnInit {
       
       data.forEach(element => {
         let data = element.data;
-        data = data.split(" ")[0];
+        data = data.split("T")[0];
         if (!(data in dateMaps)){
           dateMaps[data] = [];
         } 
