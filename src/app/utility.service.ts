@@ -24,8 +24,8 @@ export class UtilityService {
     detailValue.totale_casi=0;
     detailValue.totale_casi_increment=0;
 
-    detailValue.totale_attualmente_positivi=0;
-    detailValue.totale_attualmente_positivi_increment=0;
+    detailValue.totale_positivi=0;
+    detailValue.totale_positivi_increment=0;
 
     detailValue.tamponi=0;
     detailValue.tamponi_increment=0;
@@ -51,8 +51,8 @@ export class UtilityService {
         detailValue.totale_casi+=element.totale_casi
         detailValue.totale_casi_increment+=element.totale_casi_increment
 
-        detailValue.totale_attualmente_positivi+=element.totale_attualmente_positivi
-        detailValue.totale_attualmente_positivi_increment+=element.totale_attualmente_positivi_increment
+        detailValue.totale_positivi+=element.totale_positivi
+        detailValue.totale_positivi_increment+=element.totale_positivi_increment
 
         detailValue.tamponi+=element.tamponi
         detailValue.tamponi_increment+=element.tamponi_increment
@@ -103,8 +103,8 @@ export class UtilityService {
     if(element.deceduti){
       element.deceduti=+element.deceduti
     }
-    if(element.totale_attualmente_positivi){
-      element.totale_attualmente_positivi=+element.totale_attualmente_positivi
+    if(element.totale_positivi){
+      element.totale_positivi=+element.totale_positivi
     }
 
 
@@ -161,7 +161,7 @@ export class UtilityService {
       return "Liguria"
     }
     if(region=="IT-45"){
-      return "Emilia Romagna"
+      return "Emilia-Romagna"
     }
     if(region=="IT-52"){
       return "Toscana"

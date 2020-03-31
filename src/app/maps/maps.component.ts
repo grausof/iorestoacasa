@@ -42,8 +42,8 @@ export class MapsComponent implements OnInit {
     denominazione_regione : "Italia",
     totale_casi : 0,
     totale_casi_increment : 0,
-    totale_attualmente_positivi:0,
-    totale_attualmente_positivi_increment:0,
+    totale_positivi:0,
+    totale_positivi_increment:0,
     tamponi : 0,
     tamponi_increment : 0,
     dimessi_guariti :  0,
@@ -123,15 +123,19 @@ export class MapsComponent implements OnInit {
       
       data.forEach(element => {
         let data = element.data;
-        data = data.split("T")[0];
-        if (!(data in dateMaps)){
-          dateMaps[data] = [];
-        } 
-        dateMaps[data].push(element)
+        if(data!=undefined){
 
-        if(this.showRegion){
-          this.allDataRegion.push(element);
+          data = data.split("T")[0];
+          if (!(data in dateMaps)){
+            dateMaps[data] = [];
+          } 
+          dateMaps[data].push(element)
+
+          if(this.showRegion){
+            this.allDataRegion.push(element);
+          }
         }
+        
       });
 
       let date;
@@ -164,7 +168,7 @@ export class MapsComponent implements OnInit {
           let yesterdayElement = UtilityService.getYesterdayValue(previusDate, element, this.showRegion);
           yesterdayElement = UtilityService.convertToInt(yesterdayElement);
           element.totale_casi_increment = element.totale_casi - yesterdayElement.totale_casi;
-          element.totale_attualmente_positivi_increment = element.totale_attualmente_positivi - yesterdayElement.totale_attualmente_positivi;
+          element.totale_positivi_increment = element.totale_positivi - yesterdayElement.totale_positivi;
 
           element.tamponi_increment = element.tamponi - yesterdayElement.tamponi;
           element.dimessi_guariti_increment = element.dimessi_guariti - yesterdayElement.dimessi_guariti;
@@ -237,7 +241,7 @@ export class MapsComponent implements OnInit {
             'totale_casi':-latElement['totale_casi']+element['totale_casi'],
             'deceduti':-latElement['deceduti']+element['deceduti'],
             'dimessi_guariti':-latElement['dimessi_guariti']+element['dimessi_guariti'],
-            'totale_attualmente_positivi':-latElement['totale_attualmente_positivi']+element['totale_attualmente_positivi'],
+            'totale_positivi':-latElement['totale_positivi']+element['totale_positivi'],
             'data':element['data']
           }
           temporalDataIncrement.push(e);
@@ -405,12 +409,12 @@ export class MapsComponent implements OnInit {
   series3.tooltipText = "Guariti: {dimessi_guariti}";
 
   var series4 = this.lineChart.series.push(new am4charts.LineSeries());
-  series4.dataFields.valueY = "totale_attualmente_positivi";
+  series4.dataFields.valueY = "totale_positivi";
   series4.dataFields.dateX = "data";
   series4.name = 'Totale attualmente positivi';
   series4.strokeWidth = 1;
   series4.bullets.push(new am4charts.CircleBullet());
-  series4.tooltipText = "Attualmente positivi: {totale_attualmente_positivi}";
+  series4.tooltipText = "Attualmente positivi: {totale_positivi}";
 
 
 
