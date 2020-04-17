@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UtilityService {
 
-  constructor() { 
+  constructor() {
 
   }
 
@@ -13,7 +13,7 @@ export class UtilityService {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-    
+
     let data_string = yyyy+"-"+mm+"-"+dd+"";
     return data_string;
   }
@@ -71,11 +71,16 @@ export class UtilityService {
 
         detailValue.deceduti+=element.deceduti
         detailValue.deceduti_increment+=element.deceduti_increment
-
-        
     }
+    if (detailValue.totale_casi_increment > 0) detailValue.totale_casi_increment = "+"+detailValue.totale_casi_increment
+    if (detailValue.totale_positivi_increment > 0) detailValue.totale_positivi_increment = "+"+detailValue.totale_positivi_increment
+    if (detailValue.tamponi_increment > 0) detailValue.tamponi_increment = "+"+detailValue.tamponi_increment
+    if (detailValue.dimessi_guariti_increment > 0) detailValue.dimessi_guariti_increment = "+"+detailValue.dimessi_guariti_increment
+    if (detailValue.terapia_intensiva_increment > 0) detailValue.terapia_intensiva_increment = "+"+detailValue.terapia_intensiva_increment
+    if (detailValue.ricoverati_con_sintomi_increment > 0) detailValue.ricoverati_con_sintomi_increment = "+"+detailValue.ricoverati_con_sintomi_increment
+    if (detailValue.isolamento_domiciliare_increment > 0) detailValue.isolamento_domiciliare_increment = "+"+detailValue.isolamento_domiciliare_increment
+    if (detailValue.deceduti_increment > 0) detailValue.deceduti_increment = "+"+detailValue.deceduti_increment
     return detailValue;
-
   }
 
 
@@ -135,7 +140,7 @@ export class UtilityService {
         return element;
       }
     }
-    
+
 
   }
   static mapRegion(region){
@@ -180,25 +185,25 @@ export class UtilityService {
     }
     if(region=="IT-67"){
       return "Molise"
-    } 
+    }
     if(region=="IT-72"){
       return "Campania"
     }
     if(region=="IT-75"){
       return "Puglia"
-    } 
+    }
     if(region=="IT-77"){
       return "Basilicata"
-    } 
+    }
     if(region=="IT-78"){
       return "Calabria"
-    } 
+    }
     if(region=="IT-82"){
       return "Sicilia"
-    } 
+    }
     if(region=="IT-88"){
       return "Sardegna"
-    } 
+    }
     return null;
   }
 }
